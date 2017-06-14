@@ -1,0 +1,37 @@
+.content-img {
+    padding: 35px 0;
+}
+#content-login {
+    margin-top: 100px;
+}
+#content-login p{
+	text-align: center;
+    padding: 25px 0;
+}
+#form-login div {
+    position: relative;
+    overflow: auto;
+    padding: 15px;
+    margin: 0;
+}
+
+#form-login input {
+    padding: 7px 10px;
+}
+#btn-login:before{
+    content: "\f090";
+    font-family: FontAwesome;
+    position: absolute;
+    top: -50px;
+    padding: 10px 15px;
+    font-size: 30px;
+    transition: all .3s;
+}
+#btn-login:hover::before{
+	top: -10px;
+}
+#btn-login span{
+	opacity: 1;
+	transition: all .3s;
+}
+#btn-login:hover span{opacity: 0;}

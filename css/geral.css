@@ -1,0 +1,17 @@
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    background-color: #ff5050;
+    padding: 10px 35px;
+    border: none;
+}
+.btn-primary:hover{
+    background-color: #e03534;
+}
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary.active{
+    background-color: #e03534 !important;
+    border: 1px solid #9e1e1e;
+}
