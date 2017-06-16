@@ -3,6 +3,7 @@
 }
 #content-login {
     margin-top: 100px;
+    border: 1px solid;
 }
 #content-login p{
 	text-align: center;

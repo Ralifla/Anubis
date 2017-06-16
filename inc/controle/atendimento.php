@@ -1,14 +1,41 @@
 <?php 
 include "../modelo/userFacade.php";
-
-
 session_start();
-$_SESSION['error'] = '';
-if(strcmp($_GET["acao"], "logar") == 0){
+
+// atendimento
+if(strcmp($_GET["acao"], "getSessionData") == 0){
+	getSessionData();
+}else if(strcmp($_GET["acao"], "deleteSessionMsg") == 0){
+	deleteSessionMsg();
+}else if(strcmp($_GET["acao"], "logar") == 0){
 	logar();
 }
 	
-		
+// retorna dados da sessão
+function getSessionData(){
+	$data = array();
+	$data['error'] = null;
+	try{
+		$val;
+		foreach($_POST as $key => $value)
+			$val[$value] = $_SESSION[$value];
+		$data['value'] = $val;
+		$data['tipo']  = 'success';
+	}catch (Exception $e){
+		$data['tipo']  = 'error';
+		$data['msg']   = 'Ocorreu um erro ao carregar dados da sessão';
+		session_destroy();
+	}
+	print_r(json_encode($data));
+	die();
+}
+
+// remove msg da sessão
+function deleteSessionMsg(){
+	$_SESSION['msg'] = null;
+}
+
+// controle de login	
 function logar(){
 	$msg; $location; $tipo;
 	$login = $_POST['username'];
@@ -33,18 +60,25 @@ function logar(){
 			$data[] = $row;
 		$data = $data[0];
 		
-		// add dados do usuário na sessão
-		if($data){
-			$tipo = "success";
-			$location = "Location: /anubis/dashboard.php";
-			$_SESSION['user_id'] = $data['ID'];
-			$_SESSION['user_name'] = $data['user_name'];
-			$_SESSION['user_permission'] = $data['user_permission'];
+		try{
+			// add dados do usuário na sessão
+			if($data){
+				$tipo = "success";
+				$location = "Location: /anubis/dashboard.php";
+				$_SESSION['user_id'] = $data['ID'];
+				$_SESSION['user_name'] = $data['user_name'];
+				$_SESSION['user_permission'] = $data['user_permission'];
+			}
+		}catch (Exception $e){
+			$data['tipo']  = 'error';
+			$data['msg']   = 'Ocorreu um erro ao salvar dados da sessão';
+			session_destroy();
 		}
 	}
 	header($location);
 	$_SESSION['tipo'] = $tipo;
 	$_SESSION['msg'] = $msg;
+	die();
 }
 
 ?>

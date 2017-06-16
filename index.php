@@ -13,8 +13,9 @@
 	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
 	<script type="text/javascript" src="js/lib/toastr.min.js"></script>
 	<script type="text/javascript" src="js/geral.js"></script>
+	<script type="text/javascript" src="js/ajax.js"></script>
 </head>
-<body>
+<body class="bg-dark">
 	<section class="container">
 		<article id="content-login" class="bg-dark bg-font-dark col-md-8 col-md-offset-2 col-xs-12">
 			<header>
@@ -37,15 +38,4 @@
 		</article>
 	</section>
 </body>
-<script>
-$(document).ready(function($) {
-	<?php 
-		session_start(); 
-		echo 'var msg  = "'.$_SESSION["msg"].'";'; 
-		echo 'var tipo = "'.$_SESSION["tipo"].'";'; 
-		session_destroy();
-	?>
-	if(msg) showToastr(tipo ,msg);
-});
-</script>
 </html>
