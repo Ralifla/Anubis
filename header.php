@@ -52,7 +52,7 @@
 		</div>
 	</section>
 </header>
-<div class="col-md-3">
+<div class="col-md-3 col-lg-2">
 	<nav class="page-sidebar">
 		<ul id="container-menu"></ul>
 	</nav>
