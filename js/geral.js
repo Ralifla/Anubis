@@ -7,17 +7,18 @@ $(document).ready(function(){
 	});
 	
 	// abre/fecha campo de pesquisa
-	$("#open-search").on("click",function(){
-		$(this).parents(".content-search").addClass("active");
-		$(".search-box").trigger("focus");
-	});
-	$(".content-search").focusout(function(){
-		$(this).removeClass("active");
-		$(".search-box").val('');
+	$(document).on("click", function(event){
+		if($(event.target).parents("#container-search").length){
+			$(".content-search").addClass("active");
+			$(".search-box").trigger("focus");
+		}else{
+			$(".content-search").removeClass("active");
+			$(".search-box").val('');
+		}
 	});
 	
 	//menu collapse
-	$("body").on("click",".collapse-item > a",function(){
+	$("body").on("click",".collapse-item > a",function(event){
 		event.preventDefault();
 		$(this).parent().toggleClass("open");
 	});
@@ -28,13 +29,13 @@ $(document).ready(function(){
 function showToastr(tipo, msg) {
 	Command: toastr[tipo](msg);
 	toastr.options = {
-		"debug" : false,
-		"positionClass" : "toast-top-center",
-		"onclick" : null,
-		"fadeIn" : 300,
-		"fadeOut" : 1000,
-		"timeOut" : 5000,
-		"extendedTimeOut" : 1000
+			"debug" : false,
+			"positionClass" : "toast-top-center",
+			"onclick" : null,
+			"fadeIn" : 300,
+			"fadeOut" : 1000,
+			"timeOut" : 5000,
+			"extendedTimeOut" : 1000
 	}
 	
 	removeMsg();

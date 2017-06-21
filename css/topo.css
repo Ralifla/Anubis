@@ -76,11 +76,15 @@
     position: relative;
 }
 /* menu */
+#menu {
+    padding-right: 0;
+}
 #container-menu {
     padding: 15px 12px;
 }
 .page-sidebar {
     background-color: #fff;
+    border: 1px solid #bac3cc;
 }
 
 li.nav-item {
@@ -154,5 +158,25 @@ li.open .sub-menu{
 	}
 	.notification-content{
 		float: left;
+	}
+	#menu {
+	    height: 67px;
+	    float: left;
+	    overflow: hidden;
+	    margin: 0;
+	    position: relative;
+	    display: block;
+	    text-align: center;
+	    background-color: #fff;
+	    width: 55px;
+	    height: 39px;
+	    margin-left: 15px;
+	    cursor: pointer;
+	}
+	#menu:before{
+		content: "\f0c9";
+		font-family: FontAwesome;
+		color: #e9ecf3;
+		font-size: 25px;
 	}
 }

@@ -11,7 +11,9 @@ if(strcmp($_GET["acao"], "getSessionData") == 0){
 }else if(strcmp($_GET["acao"], "getMenu") == 0){
 	getMenu();
 }else if(strcmp($_GET["acao"], "logar") == 0){
-	logar();
+	login();
+}else if(strcmp($_GET["acao"], "sair") == 0){
+	logout();
 }
 	
 // retorna dados da sessão
@@ -48,7 +50,7 @@ function deleteSessionMsg(){
 }
 
 // controle de login	
-function logar(){
+function login(){
 	$msg; $location; $tipo;
 	$login = $_POST['username'];
 	$senha = $_POST['password'];
@@ -91,6 +93,11 @@ function logar(){
 	header($location);
 	$_SESSION['tipo'] = $tipo;
 	$_SESSION['msg'] = $msg;
+	die();
+}
+
+function logout(){
+	session_destroy();
 	die();
 }
 ?>

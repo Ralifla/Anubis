@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php 
+	session_start(); 
+	if(!isset($_SESSION['user_permission']))
+		header("location:/anubis");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +29,7 @@
 			<a href="dashboard.php"><img src="img/ralifla.png"></a>
 		</div>
 	</section>
-	<section id="container-user-menu" class="col-xs-6">
+	<section id="container-user-menu" class="col-xs-12">
 		<div class="notification-content">
 			<div id="notification" class="btn-group bg-red-ralifla">
 				<i class="fa fa-bell-o" aria-hidden="true"></i>
@@ -42,7 +46,7 @@
 	</section>
 	<section id="container-search" class="col-xs-12">
 		<div class="content-search">
-			<form action="inc/controle/atendimento.php?acao=logar" method="POST">
+			<form action="listagem.php" method="POST">
 				<div class="search-content">
 					<input type="text" class="search-box bg-dark col-xs-12" name="key">
 					<button type="submit" id="search" class="reset-button"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -52,7 +56,7 @@
 		</div>
 	</section>
 </header>
-<div class="col-md-3 col-lg-2">
+<div id="menu" class="col-md-3 col-lg-2">
 	<nav class="page-sidebar">
 		<ul id="container-menu"></ul>
 	</nav>

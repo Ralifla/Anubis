@@ -1,4 +1,14 @@
 $(document).ready(function(){
+	// loggout do sistema
+	$("#logout").on("click",function(){
+		$.ajax({
+			url: 'inc/controle/atendimento.php?acao=sair',
+			beforeSend:function(){
+				window.location.replace("/anubis");
+			}
+		});
+	});
+	
 	// monta menu via ajax
 	$.ajax({
 		url: 'inc/controle/atendimento.php?acao=getMenu',
@@ -60,6 +70,7 @@ function buildLI(data){
 	html += '</li>';
 	return html;
 }
+
 // retorna dados da sessão
 function getSessionData(key){
 	var data = new Object();
