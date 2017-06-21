@@ -1,3 +1,7 @@
+body{
+	background-color: #e9ecf3;
+	font-family: 'Roboto', sans-serif;
+}
 .btn-primary {
     position: relative;
     overflow: hidden;
@@ -15,3 +19,10 @@
     background-color: #e03534 !important;
     border: 1px solid #9e1e1e;
 }
+.reset-button{
+	border: 0;
+	padding: 0;
+	background-color: transparent;
+}
+.margin-0{margin:0;}
+.padding-0{padding:0;}

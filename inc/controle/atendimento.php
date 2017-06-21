@@ -1,5 +1,6 @@
 <?php 
 include "../modelo/userFacade.php";
+include "../util/menu.php";
 session_start();
 
 // atendimento
@@ -7,6 +8,8 @@ if(strcmp($_GET["acao"], "getSessionData") == 0){
 	getSessionData();
 }else if(strcmp($_GET["acao"], "deleteSessionMsg") == 0){
 	deleteSessionMsg();
+}else if(strcmp($_GET["acao"], "getMenu") == 0){
+	getMenu();
 }else if(strcmp($_GET["acao"], "logar") == 0){
 	logar();
 }
@@ -27,6 +30,15 @@ function getSessionData(){
 		session_destroy();
 	}
 	print_r(json_encode($data));
+	die();
+}
+
+// retorna menu de acordo com nivel de permissão
+function getMenu(){
+	$menu = new Menu();
+	$perm = $_SESSION['user_permission'];
+	$html = $menu->getMenu($perm);
+	print_r(json_encode($html));
 	die();
 }
 
@@ -68,6 +80,7 @@ function logar(){
 				$_SESSION['user_id'] = $data['ID'];
 				$_SESSION['user_name'] = $data['user_name'];
 				$_SESSION['user_permission'] = $data['user_permission'];
+				$_SESSION['user_img_url'] = $userFacade->get_user_image($data['user_permission']);
 			}
 		}catch (Exception $e){
 			$data['tipo']  = 'error';
@@ -80,5 +93,4 @@ function logar(){
 	$_SESSION['msg'] = $msg;
 	die();
 }
-
 ?>

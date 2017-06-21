@@ -12,8 +12,8 @@ class UserDAO{
 	function Logar($login, $senha){
 		$conection = new Connection();
 		$mysqli = $conection->getConnection();
-		
-		$request = $mysqli->query("SELECT * FROM an_users WHERE user_login ='". $login ."'AND user_pass ='".$senha."'");
+		$query = "SELECT * FROM an_users WHERE user_login ='". $login ."'AND user_pass ='".$senha."'";
+		$request = $mysqli->query($query);
 		
 		if(!request){
 			$this->mensagem = "Ocorreu um erro ao estabelecer uma conexão com banco de dados";

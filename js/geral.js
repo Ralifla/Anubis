@@ -5,6 +5,23 @@ $(document).ready(function(){
 		if(data.value.msg != null && data.value.msg != '')
 			showToastr(data.value.tipo, data.value.msg);
 	});
+	
+	// abre/fecha campo de pesquisa
+	$("#open-search").on("click",function(){
+		$(this).parents(".content-search").addClass("active");
+		$(".search-box").trigger("focus");
+	});
+	$(".content-search").focusout(function(){
+		$(this).removeClass("active");
+		$(".search-box").val('');
+	});
+	
+	//menu collapse
+	$("body").on("click",".collapse-item > a",function(){
+		event.preventDefault();
+		$(this).parent().toggleClass("open");
+	});
+	
 });
 
 // Escreve mensagem toastr
