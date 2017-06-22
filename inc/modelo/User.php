@@ -1,42 +1,6 @@
 <?php 
 	include "../persistencia/UserDAO.php";
 	class User{
-		private $nome;
-		private $username;
-		private $password;
-		private $permission;
-		
-		function getNome(){
-			return $this->nome;
-		}
-		function setNome($nome){
-			$this->nome = $nome;
-		}
-		
-		function getUsername(){
-			return $this->username;
-		}
-		
-		function setUsername($username){
-			$this->username = $username;
-		}
-		
-		function getPassworld(){
-			return $this->password;
-		}
-		
-		function setPassworld($password){
-			$this->password = $password;
-		}
-		
-		function getPermission(){
-			return $this->permission;
-		}
-		
-		function setPermission($permission){
-			$this->permission = $permission;
-		}
-		
 		function get_user_image($permission){
 			switch($permission){
 				case 100:

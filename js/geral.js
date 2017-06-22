@@ -2,7 +2,6 @@ $(document).ready(function(){
 	// carrega mensagem pendente ao usuário
 	var userData = getSessionData(["descricao","tipo"]);
 	userData.done(function (data) {
-		console.log(data);
 		if(data.value.descricao != null)
 			showToastr(data.value.tipo, data.value.descricao, true);
 	});

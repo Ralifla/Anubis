@@ -46,7 +46,7 @@
 	</section>
 	<section id="container-search" class="col-xs-12">
 		<div class="content-search">
-			<form action="listagem.php" method="POST">
+			<form action="inc/controle/VendedorAtendimento.php?acao=listar" method="POST">
 				<div class="search-content">
 					<input type="text" class="search-box bg-dark col-xs-12" name="key">
 					<button type="submit" id="search" class="reset-button"><i class="fa fa-search" aria-hidden="true"></i></button>

@@ -49,3 +49,9 @@ body{
 .portlet-body {
     padding-top: 10px;
 }
+.table>thead>tr>th{
+	border-bottom: none;
+}
+#listagem-vendedor i {
+    font-size: 25px;
+}

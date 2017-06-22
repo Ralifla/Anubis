@@ -1,5 +1,5 @@
 <?php 
-include "../persistencia/Connection.php";
+include "Connection.php";
 
 class UserDAO{
 	private $mensagem = array();
@@ -18,6 +18,7 @@ class UserDAO{
 	function Login($username, $password){
 		$conection = new Connection();
 		$mysqli = $conection->getConnection();
+		
 		$query = "SELECT * FROM an_users WHERE user_login ='". $username."'AND user_pass ='".$password."'";
 		$request = $mysqli->query($query);
 		if(!request){
