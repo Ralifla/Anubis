@@ -2,7 +2,7 @@ $(document).ready(function(){
 	// loggout do sistema
 	$("#logout").on("click",function(){
 		$.ajax({
-			url: 'inc/controle/atendimento.php?acao=sair',
+			url: 'inc/controle/UserAtendimento.php?acao=logout',
 			beforeSend:function(){
 				window.location.replace("/anubis");
 			}
@@ -11,7 +11,7 @@ $(document).ready(function(){
 	
 	// monta menu via ajax
 	$.ajax({
-		url: 'inc/controle/atendimento.php?acao=getMenu',
+		url: 'inc/controle/UserAtendimento.php?acao=build_menu',
 		type: 'POST',
 		dataType: 'json',
 		success: function(data){
@@ -78,7 +78,7 @@ function getSessionData(key){
 		data[i] = key[i];
 	
 	return $.ajax({
-		url:'inc/controle/atendimento.php?acao=getSessionData',
+		url:'inc/controle/Atendimento.php?acao=getSessionData',
 		data:data,
 		type:'POST',
 		dataType: 'json'
@@ -88,6 +88,6 @@ function getSessionData(key){
 //remove msg da sessão
 function removeMsg(){
 	$.ajax({
-		url:'inc/controle/atendimento.php?acao=deleteSessionMsg',
+		url:'inc/controle/Atendimento.php?acao=deleteSessionMsg',
 	});
 }

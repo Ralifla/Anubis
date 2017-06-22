@@ -21,7 +21,7 @@
 			<header>
 				<div class="content-img text-center"><img src="img/ralifla.png"></div>
 			</header>
-			<form id="form-login" method="POST" action="inc/controle/atendimento.php?acao=logar">
+			<form id="form-login" method="POST" action="inc/controle/UserAtendimento.php?acao=login">
 				<div class="form-group">
 					<input type="text" class="col-xs-12 font-dark" name="username" placeholder="Usuario">
 				</div>

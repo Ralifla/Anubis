@@ -1,9 +1,10 @@
 $(document).ready(function(){
 	// carrega mensagem pendente ao usuário
-	var userData = getSessionData(["msg","tipo"]);
+	var userData = getSessionData(["descricao","tipo"]);
 	userData.done(function (data) {
-		if(data.value.msg != null && data.value.msg != '')
-			showToastr(data.value.tipo, data.value.msg);
+		console.log(data);
+		if(data.value.descricao != null)
+			showToastr(data.value.tipo, data.value.descricao, true);
 	});
 	
 	// abre/fecha campo de pesquisa
@@ -26,7 +27,7 @@ $(document).ready(function(){
 });
 
 // Escreve mensagem toastr
-function showToastr(tipo, msg) {
+function showToastr(tipo, msg, ajax_remove) {
 	Command: toastr[tipo](msg);
 	toastr.options = {
 			"debug" : false,
@@ -37,6 +38,6 @@ function showToastr(tipo, msg) {
 			"timeOut" : 5000,
 			"extendedTimeOut" : 1000
 	}
-	
-	removeMsg();
+	if(ajax_remove)
+		removeMsg();
 }
