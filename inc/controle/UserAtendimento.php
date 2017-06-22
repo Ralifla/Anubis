@@ -4,8 +4,8 @@ $acao = $_GET["acao"];
 switch ($acao){
 	// login
 	case "login": 
-		$username = validate_injectior($_POST['username']);
-		$password = validate_injectior($_POST['password']);
+		$username = $_POST['username'];
+		$password = $_POST['password'];
 		
 		$user = new User();
 		$location = $user->Login($username, $password);
@@ -33,7 +33,5 @@ switch ($acao){
 		die();
 }
 
-function validate_injectior($string){
-	return $string;
-}
+
 ?>

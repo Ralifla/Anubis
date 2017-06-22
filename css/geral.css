@@ -48,6 +48,13 @@ body{
 }
 .portlet-body {
     padding-top: 10px;
+    overflow: auto;
+}
+.portlet-body form {
+    overflow: auto;
+    padding: 15px 0;
+    max-width: 900px;
+    margin: 0 auto;
 }
 .table>thead>tr>th{
 	border-bottom: none;

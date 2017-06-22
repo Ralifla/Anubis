@@ -40,3 +40,9 @@ function showToastr(tipo, msg, ajax_remove) {
 	if(ajax_remove)
 		removeMsg();
 }
+
+function get_auto_grid(length, key){
+	var container_class = "col-md-6 col-xs-12";
+	
+	return container_class;
+}

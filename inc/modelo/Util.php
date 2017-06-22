@@ -25,4 +25,9 @@ class Menu{
 	}
 }
 
+Class DataControl{
+	function validate_injectior($string){
+		return $string;
+	}
+}
 ?>

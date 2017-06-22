@@ -1,8 +1,10 @@
 <?php 
 	include("../modelo/Vendedor.php");
+	include("../modelo/Util.php");
+	
 	$acao = $_GET["acao"];
 	switch ($acao){
-		// exibe lista de vendedores cadastrados
+		// busca vendedores cadastrados baseado em um $key
 		case "listar":
 			session_start();
 			$key  = $_POST['key'];
@@ -13,6 +15,17 @@
 			session_start();
 			$_SESSION['lista'] = $data;
 			header("Location: /anubis/listagem.php");
+			die();
+			break;
+			
+		// retorna dados de um vendedor baseado no ID
+		case "getVendedor":
+			$d_control = new DataControl();
+			$id = $d_control->validate_injectior($_POST['id']);
+			
+			$vendedor = new Vendedor();
+			$data = $vendedor->getVendedor($id);
+			print_r(json_encode($data));
 			die();
 			break;
 		default:

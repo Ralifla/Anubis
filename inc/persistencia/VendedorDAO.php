@@ -27,5 +27,16 @@ class VendedorDAO{
 		return $this->serialize_request($request);
 	}
 	
+	function getVendedor($id){
+		$conection = new Connection();
+		$mysqli = $conection->getConnection();
+		
+		$query = "SELECT * FROM `an_vendedor`
+				  WHERE id = ". $id;
+		
+		$request = $mysqli->query($query);
+		return $this->serialize_request($request);
+	}
+	
 }
 ?>
