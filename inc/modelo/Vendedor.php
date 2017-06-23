@@ -11,7 +11,7 @@
 		function getVendedor($id){
 			$vendedorDAO = new VendedorDAO();
 			$data = $vendedorDAO->getVendedor($id);
-			return $data[0];
+			return $data;
 		}
 		
 	}

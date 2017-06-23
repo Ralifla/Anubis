@@ -6,7 +6,8 @@
 			<h2>Editar</h2>
 		</div>
 		<div class="portlet-body">
-			<form id="editar-vendedor"></form>
+			<form id="editar-vendedor">
+			</form>
 			<div class="text-center">
 				<button id="salvar" class="btn btn-primary">Salvar</button>
 			</div>
@@ -24,20 +25,27 @@ $(document).ready(function(){
 		data: {'id':id[1]},
 		success: function(data){
 			for(var i in data){
-				var html = get_edit_structure(i, data[i]);
+				var name = data[i].meta_key;
+				var label = name.replace("vendedor_", "");
+				label = label.replace("_", " ");
+				label = label.length > 3 ? capitalizeFirstLetter(label) : label.toUpperCase();	
+				
+				var html = get_edit_structure(label, name, data[i].meta_value);
 				$("#editar-vendedor").append(html);
 			}
+			apllySelectInputs($("#editar-vendedor input"));
+			removeLoading();
 		}
-			
 	});
 });
 
-function get_edit_structure(key, value){
-	var container_class = get_auto_grid(value.length, key);
+function get_edit_structure(label, key, value){
+	var last_style = $("#editar-vendedor div:last-child").attr("class");
+	var container_class = get_auto_grid(last_style, value.length, key);
 	
-	var html = '<div class="form-group '+container_class+'">';
-			html += '<label for="'+key+'">'+key+'</label>';
-			html += '<input type="text" class="form-control" id="'+key+'" value="'+value+' ">';
+	var html = '<div class="'+container_class+'">';
+			html += '<label for="'+key+'">'+label+'</label>';
+			html += '<input type="text" id="'+key+'" value="'+value+' ">';
 		html += '</div>';
 	return html;
 }

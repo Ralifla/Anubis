@@ -1,4 +1,5 @@
 <?php include "header.php"; ?>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <div class="col-md-9 col-lg-10">
 	<div class="portlet">
 		<div class="portlet-title">
@@ -7,6 +8,14 @@
 		</div>
 		<div class="portlet-body">
 			<div>
+				<div class="col-lg-2 col-md-3 col-xs-6 pull-right">
+					<label for="quantidade">Quantidade:</label>
+					<select name="quantidade">
+						<option value="20">20</option>
+						<option value="50">50</option>
+						<option value="100">100</option>
+					</select>
+				</div>
 				<table id="listagem-vendedor" class="table">
 					<thead>
 						<tr>
@@ -41,8 +50,18 @@
 					?>
 					</tbody>			
 				</table>
+				<div id="pagination" class="col-xs-12 pull-right"></div>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function() {
+	$('#example').DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "ajax": "scripts/server_processing.php"
+    } );
+});
+</script>
 <?php include "footer.php"; ?>

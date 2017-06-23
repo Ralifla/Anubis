@@ -7,7 +7,7 @@
 <html>
 <head>
 	<title>Ralifla</title>
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 	
 	<link rel="stylesheet" type="text/css" href="css/lib/font-awesome.min.css"></link>
 	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css"></link>
@@ -16,13 +16,15 @@
 	
 	<link rel="stylesheet" type="text/css" href="css/topo.css"></link>
 	<link rel="stylesheet" type="text/css" href="css/geral.css"></link>
+	<link rel="stylesheet" type="text/css" href="css/ring.css"></link>
 	
 	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
 	<script type="text/javascript" src="js/lib/toastr.min.js"></script>
 	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" src="js/geral.js"></script>
 </head>
-<body>
+<body class="status-loading">
+<div id="loading-gif"><div class="uil-ring-css" style="transform:scale(0.84);"><div></div></div></div>
 <header id="container-topo" class="col-xs-12 bg-dark">
 	<section class="col-md-3 col-xs-6">
 		<div class="content-logo">

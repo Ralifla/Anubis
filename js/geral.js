@@ -23,6 +23,7 @@ $(document).ready(function(){
 		$(this).parent().toggleClass("open");
 	});
 	
+	removeLoading();
 });
 
 // Escreve mensagem toastr
@@ -41,8 +42,48 @@ function showToastr(tipo, msg, ajax_remove) {
 		removeMsg();
 }
 
-function get_auto_grid(length, key){
-	var container_class = "col-md-6 col-xs-12";
-	
+function get_auto_grid(last_style, length, key){
+	if(last_style){
+		last_style = last_style.split(/[\s,]+|-/);
+	}
+	var container_class = "col-lg-4 col-md-6 col-xs-12";
 	return container_class;
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function apllySelectInputs(obj){
+	var select = {
+			'vendedor_sexo' : ['FEMININO','MASCULINO'],
+			'vendedor_residencia' : ['PROPRIA','ALUGADA','CEDIDA','PARENTES'],
+			'vendedor_estado_civil' : ['SOLTEIRA','CASADA','DIVORCIADA','VIUVA','AMASIADA']
+	}
+	for(var i=0; i<obj.length; i++){
+		for(var key in select){
+			if(key == obj[i].id){
+				var	html = '<select>';
+					var option = select[key];
+					for(var j in option){
+						if(obj[i].value.trim() == option[j])
+							html += '<option selected="selected" value="'+option[j]+'">'+option[j]+'</option>';
+						else
+							html += '<option value="'+option[j]+'">'+option[j]+'</option>';
+					}
+					html += '</select>';
+				$(obj[i]).parent("div").append(html);
+				$(obj[i]).remove();
+				break;
+			}
+		}
+	}
+}
+
+function placeLoading(){
+	$("body").addClass("status-loading");
+}
+
+function removeLoading(){
+	$("body").removeClass("status-loading");
 }

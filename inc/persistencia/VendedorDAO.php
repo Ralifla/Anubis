@@ -22,7 +22,8 @@ class VendedorDAO{
 		$query = "SELECT * FROM `an_vendedor`
 				  WHERE cpf   LIKE '%".$key."%' OR
 						nome  LIKE '%".$key."%' OR
-						email LIKE '%".$key."%'";
+						email LIKE '%".$key."%'
+				  ORDER BY ID LIMIT 20";
 		$request = $mysqli->query($query);
 		return $this->serialize_request($request);
 	}
@@ -31,9 +32,8 @@ class VendedorDAO{
 		$conection = new Connection();
 		$mysqli = $conection->getConnection();
 		
-		$query = "SELECT * FROM `an_vendedor`
-				  WHERE id = ". $id;
-		
+		$query = "SELECT meta_key, meta_value FROM `an_vendedormeta`
+				  WHERE meta_id = ". $id ." ORDER BY ID ASC";
 		$request = $mysqli->query($query);
 		return $this->serialize_request($request);
 	}

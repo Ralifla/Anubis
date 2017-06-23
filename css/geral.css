@@ -2,6 +2,24 @@ body{
 	background-color: #e9ecf3;
 	font-family: 'Roboto', sans-serif;
 }
+input,
+select,
+textarea{
+    background: #fff;
+    width: 100%;
+    height: 45px;
+    display: inline-table;
+    padding: 15px 10px;
+    border: 1px solid #e4e8eb;
+    outline: none;
+    vertical-align: middle;
+    line-height: normal;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+}
 .margin-0{margin:0;}
 .padding-0{padding:0;}
 .btn-primary {
@@ -53,8 +71,14 @@ body{
 .portlet-body form {
     overflow: auto;
     padding: 15px 0;
-    max-width: 900px;
     margin: 0 auto;
+}
+.portlet-body form > div {
+    margin: 10px 0;
+}
+
+.portlet-body form > div > label {
+    text-transform: capitalize;
 }
 .table>thead>tr>th{
 	border-bottom: none;
