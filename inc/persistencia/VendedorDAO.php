@@ -15,27 +15,41 @@ class VendedorDAO{
 			return $data;
 	}
 	
-	function Listar($key, $perm){
+	function Listar($key, $order, $search, $start, $length){
 		$conection = new Connection();
 		$mysqli = $conection->getConnection();
-	
-		$query = "SELECT * FROM `an_vendedor`
-				  WHERE cpf   LIKE '%".$key."%' OR
-						nome  LIKE '%".$key."%' OR
-						email LIKE '%".$key."%'
-				  ORDER BY ID LIMIT 20";
+		
+		$query = "SELECT COUNT(id) total FROM `an_vendedor`";
 		$request = $mysqli->query($query);
-		return $this->serialize_request($request);
+		$recordsTotal = $this->serialize_request($request);
+		$recordsTotal = $recordsTotal[0]['total'];
+	
+		
+		$query = "SELECT * FROM `an_vendedor`
+				  WHERE  cpf   LIKE '%".$search."%' OR
+						 nome  LIKE '%".$search."%' OR
+						 email LIKE '%".$search."%'
+				  ORDER BY ".$key." ". $order ." LIMIT ".$start . " ," . $length . " ";
+		$request = $mysqli->query($query);
+		$data_list = $this->serialize_request($request);
+	
+		$data = array(
+				"recordsTotal" => $recordsTotal,
+				"recordsFiltered" => sizeof($data_list),
+				"data"	=> $data_list
+		);
+
+		return $data;
 	}
 	
 	function getVendedor($id){
 		$conection = new Connection();
 		$mysqli = $conection->getConnection();
-		
 		$query = "SELECT meta_key, meta_value FROM `an_vendedormeta`
 				  WHERE meta_id = ". $id ." ORDER BY ID ASC";
 		$request = $mysqli->query($query);
-		return $this->serialize_request($request);
+		$data = $this->serialize_request($request);
+		return $data;
 	}
 	
 }

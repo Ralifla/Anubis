@@ -2,9 +2,9 @@
 	include("../persistencia/VendedorDAO.php");
 	class Vendedor{
 		
-		function Listar($key, $perm){
+		function Listar($key, $order, $search, $start, $length){
 			$vendedorDAO = new VendedorDAO();
-			$data = $vendedorDAO->Listar($key, $perm);
+			$data = $vendedorDAO->Listar($key, $order, $search, $start, $length);
 			return $data;
 		}
 		

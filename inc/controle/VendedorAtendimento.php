@@ -7,15 +7,19 @@
 		// busca vendedores cadastrados baseado em um $key
 		case "listar":
 			session_start();
-			$key  = $_POST['key'];
-			$perm = $_SESSION['user_permission'];
+			
+			$search = $_POST['search_aux'];
+			if($search == '')
+				$search = $_POST['search']['value'];
+			$start = $_POST['start'];
+			$length = $_POST['length'];
+			$i = $_POST['order'][0]['column'];
+			$key = $_POST['columns'][$i]['data'];
+			$order = $_POST['order'][0]['dir'];
 			
 			$vendedor = new Vendedor();
-			$data = $vendedor->Listar($key, $perm);
-			session_start();
-			$_SESSION['lista'] = $data;
-			header("Location: /anubis/listagem.php");
-			die();
+			$data = $vendedor->Listar($key, $order, $search, $start, $length);
+			print_r(json_encode($data));
 			break;
 			
 		// retorna dados de um vendedor baseado no ID
@@ -26,11 +30,10 @@
 			$vendedor = new Vendedor();
 			$data = $vendedor->getVendedor($id);
 			print_r(json_encode($data));
-			die();
 			break;
 		default:
 			$_SESSION['descricao']  = "Ocorreu um erro ao efetuar o atendimento";
 			$_SESSION['tipo'] = "error";
-			die();
 	}
+	die();
 ?>

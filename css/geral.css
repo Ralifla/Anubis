@@ -86,3 +86,6 @@ textarea{
 #listagem-vendedor i {
     font-size: 25px;
 }
+.dataTables_wrapper{
+	max-width: calc(100% - 10px);
+}

@@ -42,6 +42,7 @@ function showToastr(tipo, msg, ajax_remove) {
 		removeMsg();
 }
 
+// gera grid bootstrap
 function get_auto_grid(last_style, length, key){
 	if(last_style){
 		last_style = last_style.split(/[\s,]+|-/);
@@ -50,10 +51,12 @@ function get_auto_grid(last_style, length, key){
 	return container_class;
 }
 
+// retorna primeira letra da string maiuscula
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+// campos select
 function apllySelectInputs(obj){
 	var select = {
 			'vendedor_sexo' : ['FEMININO','MASCULINO'],
