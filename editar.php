@@ -18,6 +18,7 @@
 $(document).ready(function(){
 	var id = document.URL;
 	id = id.split("=");
+	// cria inputs baseado nos keys/values da tabela de vendedores
 	$.ajax({
 		url: "inc/controle/VendedorAtendimento.php?acao=getVendedor",
 		type: 'POST',
@@ -25,12 +26,12 @@ $(document).ready(function(){
 		data: {'id':id[1]},
 		success: function(data){
 			for(var i in data){
-				var name = data[i].meta_key;
+				var name = data[i][0];
 				var label = name.replace("vendedor_", "");
 				label = label.replace("_", " ");
 				label = label.length > 3 ? capitalizeFirstLetter(label) : label.toUpperCase();	
 				
-				var html = get_edit_structure(label, name, data[i].meta_value);
+				var html = get_edit_structure(label, name, data[i][1]);
 				$("#editar-vendedor").append(html);
 			}
 			apllySelectInputs($("#editar-vendedor input"));
@@ -39,6 +40,7 @@ $(document).ready(function(){
 	});
 });
 
+// retorna estrutura do input
 function get_edit_structure(label, key, value){
 	var last_style = $("#editar-vendedor div:last-child").attr("class");
 	var container_class = get_auto_grid(last_style, value.length, key);

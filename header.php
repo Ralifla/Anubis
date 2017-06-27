@@ -2,6 +2,7 @@
 	session_start(); 
 	if(!isset($_SESSION['user_permission']))
 		header("location:/anubis");
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,6 +20,26 @@
 	<link rel="stylesheet" type="text/css" href="css/ring.css"></link>
 	
 	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
+	<script>
+	var perm = <?php echo $_SESSION['user_permission'].";\n"?>
+	var page = document.URL;
+	page = page.split(/anubis\/|&/gi);
+	var id = page[1].search("id");
+	page = id != -1 ? page[1].substr(0,page[1].search("id")-1) : page[1];
+	$.ajax({
+		url: "inc/controle/UserAtendimento.php?acao=requestAccess",
+		data: {
+			"perm":perm,
+			"page":page
+		},type :"POST",
+		datatype:"json",
+		success:function(data){
+			if(data != "true")
+				window.location = "/anubis";
+		}
+	});
+	
+	</script>
 	<script type="text/javascript" src="js/lib/toastr.min.js"></script>
 	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" src="js/geral.js"></script>
@@ -48,7 +69,7 @@
 	</section>
 	<section id="container-search" class="col-xs-12">
 		<div class="content-search">
-			<form action="listagem.php" method="GET">
+			<form action="listagem.php?tipo=vendedor" method="GET">
 				<div class="search-content">
 					<input type="hidden" name="tipo" value="vendedor">
 					<input type="text" class="search-box bg-dark col-xs-12" name="key">

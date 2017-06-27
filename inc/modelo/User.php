@@ -88,5 +88,11 @@
 			return $data;
 		}
 		
+		function RequestAccess($page, $perm){
+			$userDAO = new UserDAO();
+			$access = $userDAO->RequestAccess($page, $perm);
+			return $access;
+		}
+		
 	}
 ?>

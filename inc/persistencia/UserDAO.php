@@ -18,15 +18,11 @@ class UserDAO{
 	function serialize_list($request){
 		$data = array();
 		while ($row = mysqli_fetch_assoc($request)){
-			if(is_array($row)){
-				$aux = array();
-				foreach($row as $key => $value){
-					array_push($aux, $value);
-				}
-				array_push($data, $aux);
-			}else{
-				array_push($data, $row);
+			$aux = array();
+			foreach($row as $key => $value){
+				array_push($aux, $value);
 			}
+			array_push($data, $aux);
 		}
 		return $data;
 	}
@@ -53,6 +49,21 @@ class UserDAO{
 			}
 		}
 		return $this->serialize_request($request);
+	}
+	
+	function RequestAccess($page, $perm){
+		$conection = new Connection();
+		$mysqli = $conection->getConnection();
+		
+		$query = "SELECT * FROM `an_page_permission` WHERE nome = '".$page. "' AND permissao <= " . $perm. "";
+		$request = $mysqli->query($query);
+		$access = $this->serialize_request($request);
+		
+		if($access)
+			$access = true;
+		else
+			$access = false;
+		return $access;
 	}
 	
 	function Build_Menu($perm){

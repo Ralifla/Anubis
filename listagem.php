@@ -87,6 +87,9 @@ $(document).ready(function() {
             },
         ]
     });
+
+    $(".portlet-body input[type='search']").val(get[3]);
+    get[3] = "";
     
 });
 </script>

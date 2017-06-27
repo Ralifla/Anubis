@@ -21,14 +21,11 @@
 				session_destroy();
 			}
 			print_r(json_encode($data));
-			die();
 			break;
 		// remove mensagem da sessao
 		case "deleteSessionMsg":
 			$_SESSION['descricao'] = null;
-			die();
 			break;
-		// controla qual tabela do banco sera listada
 		case "listar":
 			$data;
 			
@@ -62,4 +59,5 @@
 			print_r(json_encode($data));
 			break;
 	}
+	die();
 ?>

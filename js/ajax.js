@@ -1,14 +1,4 @@
 $(document).ready(function(){
-	// loggout do sistema
-	$("#logout").on("click",function(){
-		$.ajax({
-			url: 'inc/controle/UserAtendimento.php?acao=logout',
-			beforeSend:function(){
-				window.location.replace("/anubis");
-			}
-		});
-	});
-	
 	// monta menu via ajax
 	$.ajax({
 		url: 'inc/controle/UserAtendimento.php?acao=build_menu',
@@ -46,6 +36,17 @@ $(document).ready(function(){
 			menuLink();
 		}
 	});
+	
+	// loggout do sistema
+	$("#logout").on("click",function(){
+		$.ajax({
+			url: 'inc/controle/UserAtendimento.php?acao=logout',
+			beforeSend:function(){
+				window.location.replace("/anubis");
+			}
+		});
+	});
+	
 });
 
 // controle de links do menu
