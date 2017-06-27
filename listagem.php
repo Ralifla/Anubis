@@ -12,11 +12,15 @@
 				<table id="listagem-vendedor" class="table">
 					<thead>
 						<tr>
-							<th>Id</th>
-							<th>CPF</th>
-							<th>Nome</th>
-							<th>E-mail</th>
-							<th>Detalhes</th>
+							<?php 
+								$thead;$tipo = $_GET['tipo'];
+								if(strcmp($tipo, "vendedor") == 0){
+									$thead = "<th>Id</th><th>CPF</th><th>Nome</th><th>E-mail</th><th>Detalhes</th>";
+								}else if(strcmp($tipo, "webmaster") == 0){
+									$thead = "<th>Id</th><th>Login</th><th>Nome</th><th>Permissão</th><th>Detalhes</th>";
+								}
+								echo $thead
+							?>
 						</tr>
 					</thead>
 					<tbody></tbody>			
@@ -29,17 +33,20 @@
 <script>
 $(document).ready(function() {
 	// pesquisa
-	var serach_key = document.URL;
-	serach_key = serach_key.split("=");
+	var get = document.URL;
+	get = get.split("?");
+	get = get[1].split(/=|&/);
+	
 	// datatable
 	var datatable = $('#listagem-vendedor').DataTable({
 		"processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "inc/controle/VendedorAtendimento.php?acao=listar",
+            "url": "inc/controle/Atendimento.php?acao=listar",
             "type": "POST",
             "data": function ( d ) {
-            	d.search_aux = serach_key[1];
+                d.listagem = get[1],
+             	d.search_aux = get[3];
             }
         },
         "language": {
@@ -66,22 +73,21 @@ $(document).ready(function() {
             }
         },
         "columns": [
-            { "data": "id" },
-            { "data": "cpf" },
-            { "data": "nome" },
-            { "data": "email" },
+            { "data": "0" },
+            { "data": "1" },
+            { "data": "2" },
+            { "data": "3" },
             {
                 sortable: false,
                 className: 'text-center',
                 "render": function ( data, type, full, meta ) {
-                    var url = 'editar.php?id='+full.id;
+                    var url = 'editar.php?id='+full[0];
                     return '<a href='+url+'><i class="fa fa-eye" aria-hidden="true"></i></a>';
                 }
             },
         ]
     });
-	$(".portlet-body input[type='search']").val(serach_key[1]);
-	serach_key[1] = '';
+    
 });
 </script>
 <?php include "footer.php"; ?>

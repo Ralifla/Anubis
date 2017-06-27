@@ -1,6 +1,7 @@
 <?php 
 	include "../persistencia/UserDAO.php";
 	class User{
+		
 		function get_user_image($permission){
 			switch($permission){
 				case 100:
@@ -65,5 +66,27 @@
 			
 			return $menu;
 		}
+		
+		function getDataTableKey($id){
+			switch ($id){
+				case "0":
+					return "id";
+				case "1":
+					return "user_login";
+				case "2":
+					return "user_name";
+				case "3":
+					return "user_permission";
+				default:
+					return "id";
+			}
+		}
+		
+		function Listar($key, $order, $search, $start, $length){
+			$userDAO = new UserDAO();
+			$data = $userDAO->Listar($key, $order, $search, $start, $length);
+			return $data;
+		}
+		
 	}
 ?>

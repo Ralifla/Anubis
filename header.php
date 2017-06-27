@@ -50,6 +50,7 @@
 		<div class="content-search">
 			<form action="listagem.php" method="GET">
 				<div class="search-content">
+					<input type="hidden" name="tipo" value="vendedor">
 					<input type="text" class="search-box bg-dark col-xs-12" name="key">
 					<button type="submit" id="search" class="reset-button"><i class="fa fa-search" aria-hidden="true"></i></button>
 				</div>

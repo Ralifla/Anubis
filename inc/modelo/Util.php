@@ -30,4 +30,5 @@ Class DataControl{
 		return $string;
 	}
 }
+
 ?>
