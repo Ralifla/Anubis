@@ -94,5 +94,11 @@
 			return $access;
 		}
 		
+		function getDashboard(){
+			$userDAO = new UserDAO();
+			$data = $userDAO->getDashboard();
+			return $data;
+		}
+		
 	}
 ?>

@@ -39,6 +39,11 @@ switch ($acao){
 			session_destroy();	
 		}
 		break;
+	case "dashboardData":
+		$user = new User();
+		$data = $user->getDashboard();
+		print_r(json_encode($data));
+		break;
 	default:
 		$_SESSION['descricao']  = "Ocorreu um erro ao efetuar o atendimento";
 		$_SESSION['tipo'] = "error";

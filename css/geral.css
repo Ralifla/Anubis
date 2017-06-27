@@ -86,3 +86,15 @@ textarea{
 .dataTables_wrapper{
 	max-width: calc(100% - 10px);
 }
+.dashboard-card {
+    overflow: auto;
+    padding: 20px 9px;
+    border: 1px solid;
+}
+.dashboard-card .number h3 {
+    margin: 0;
+}
+
+.dashboard-card .number small {
+    text-transform: uppercase;
+}

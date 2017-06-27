@@ -99,5 +99,26 @@ class UserDAO{
 		return $data;
 	}
 	
+	function getDashboard(){
+		$conection = new Connection();
+		$mysqli = $conection->getConnection();
+		
+		$query = "SELECT COUNT(id) total from `an_vendedor`";
+		$request = $mysqli->query($query);
+		$qtdVendedor = $this->serialize_request($request);
+		$qtdVendedor = $qtdVendedor[0]['total'];
+
+		$query = "SELECT COUNT(id) total from `an_users`";
+		$request = $mysqli->query($query);
+		$qtdUser = $this->serialize_request($request);
+		$qtdUser = $qtdUser[0]['total'];
+		
+		$data = array(
+			"users" => $qtdUser,
+			"vendedores" => $qtdVendedor
+		);
+		return $data;
+	}
+	
 }
 ?>
