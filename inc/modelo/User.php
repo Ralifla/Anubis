@@ -10,6 +10,21 @@
 					return "img/guest.png";
 			}
 		}
+
+		function getDataTableKey($id){
+			switch ($id){
+				case "0":
+					return "id";
+				case "1":
+					return "user_login";
+				case "2":
+					return "user_name";
+				case "3":
+					return "user_permission";
+				default:
+					return "id";
+			}
+		}
 		
 		function setUser($nome, $username, $password, $permission){
 			$this->nome = $nome;
@@ -67,20 +82,6 @@
 			return $menu;
 		}
 		
-		function getDataTableKey($id){
-			switch ($id){
-				case "0":
-					return "id";
-				case "1":
-					return "user_login";
-				case "2":
-					return "user_name";
-				case "3":
-					return "user_permission";
-				default:
-					return "id";
-			}
-		}
 		
 		function Listar($key, $order, $search, $start, $length){
 			$userDAO = new UserDAO();
@@ -97,6 +98,18 @@
 		function getDashboard(){
 			$userDAO = new UserDAO();
 			$data = $userDAO->getDashboard();
+			return $data;
+		}
+		
+		function getUser($id){
+			$userDAO = new UserDAO();
+			$data = $userDAO->getUser($id);
+			return $data;
+		}
+		
+		function updateUser($user_data){
+			$userDAO = new UserDAO();
+			$data = $userDAO->updateUser($user_data);
 			return $data;
 		}
 		

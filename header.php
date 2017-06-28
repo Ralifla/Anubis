@@ -21,11 +21,14 @@
 	
 	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
 	<script>
+	// var para cecar permissao
 	var perm = <?php echo $_SESSION['user_permission'].";\n"?>
 	var page = document.URL;
 	page = page.split(/anubis\/|&/gi);
 	var id = page[1].search("id");
 	page = id != -1 ? page[1].substr(0,page[1].search("id")-1) : page[1];
+	
+	// controla permissão de acesso as telas e exibe menssagens pendentes na sessão
 	$.ajax({
 		url: "inc/controle/UserAtendimento.php?acao=requestAccess",
 		data: {
@@ -34,11 +37,18 @@
 		},type :"POST",
 		datatype:"json",
 		success:function(data){
-			if(data != "true")
-				window.location = "/anubis";
+			if(data != "true"){
+				window.location = "/anubis/dashboard.php";
+			}else{
+				// carrega mensagem pendente ao usuário
+				var userData = getSessionData(["descricao","tipo"]);
+				userData.done(function (data) {
+					if(data.value.descricao != null)
+						showToastr(data.value.tipo, data.value.descricao, true);
+				});
+			}
 		}
 	});
-	
 	</script>
 	<script type="text/javascript" src="js/lib/toastr.min.js"></script>
 	<script type="text/javascript" src="js/ajax.js"></script>
@@ -60,10 +70,10 @@
 			</div>
 		</div>
 		<div class="user-content pull-right">
-			<button id="user-info" class="reset-button">
+			<a id="user-info" class="reset-button" href="perfil.php">
 				<span class="font-blue-madison">Olá, <?php echo $_SESSION['user_name']?></span>
 				<img src="<?php echo $_SESSION['user_img_url']?>">
-			</button>
+			</a>
 			<div class="btn-group bg-green-haze" id="logout"><i class="fa fa-sign-out font-white" aria-hidden="true"></i></div>
 		</div>
 	</section>

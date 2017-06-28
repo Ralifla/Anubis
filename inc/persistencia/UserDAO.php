@@ -120,5 +120,34 @@ class UserDAO{
 		return $data;
 	}
 	
+	// seleciona metadados do usuário
+	function getUser($id){
+		$conection = new Connection();
+		$mysqli = $conection->getConnection();
+	
+		$query = "SELECT meta_key,meta_value from `an_usermeta`";
+		$request = $mysqli->query($query);
+		$data = $this->serialize_request($request);
+		
+		return $data;
+	}
+	
+	// atualiza os dados do usuário
+	function updateUser($user_data){
+		$conection = new Connection();
+		$mysqli = $conection->getConnection();
+		
+		$query;
+		foreach($user_data as $key => $value){
+			if(strcmp($key,"id") != "0"){
+				$query .= $key . " -- " . $value . " --- " . $user_data["id"];
+				echo $query . "\n";
+				die();
+			}
+		}
+		
+		return $data;
+	}
+	
 }
 ?>

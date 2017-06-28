@@ -26,9 +26,9 @@
 		case "deleteSessionMsg":
 			$_SESSION['descricao'] = null;
 			break;
+		// cria uma listagem para o datatables
 		case "listar":
 			$data;
-			
 			$search = $_POST['search_aux'];
 			if($search == '')
 				$search = $_POST['search']['value'];
@@ -52,10 +52,7 @@
 					$key = $user->getDataTableKey($id);
 					$data = $user->Listar($key, $order, $search, $start, $length);
 					break;
-				default:
-					// encaminhar para dashboard
 			}
-			
 			print_r(json_encode($data));
 			break;
 	}

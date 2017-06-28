@@ -1,11 +1,4 @@
 $(document).ready(function(){
-	// carrega mensagem pendente ao usuário
-	var userData = getSessionData(["descricao","tipo"]);
-	userData.done(function (data) {
-		if(data.value.descricao != null)
-			showToastr(data.value.tipo, data.value.descricao, true);
-	});
-	
 	// abre/fecha campo de pesquisa
 	$(document).on("click", function(event){
 		if($(event.target).parents("#container-search").length){
@@ -38,6 +31,8 @@ function showToastr(tipo, msg, ajax_remove) {
 			"timeOut" : 5000,
 			"extendedTimeOut" : 1000
 	}
+	
+	// remove menssagem da sessão
 	if(ajax_remove)
 		removeMsg();
 }

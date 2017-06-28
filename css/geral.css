@@ -17,6 +17,9 @@ textarea{
     -o-border-radius: 3px;
     border-radius: 3px;
 }
+.row {
+    margin: 0;
+}
 .margin-0{margin:0;}
 .padding-0{padding:0;}
 .btn-primary {

@@ -25,23 +25,37 @@ switch ($acao){
 		$menu = $user->Build_Menu($pemission);
 		print_r(json_encode($menu));
 		break;
-	// controla qual tabela do banco sera listada
+	// controla acesso as páginas
 	case "requestAccess":
 		$page = $_POST['page'];
 		$perm = $_POST['perm'];
 		
 		$user = new User();
 		$access = $user->RequestAccess($page, $perm);
-		print_r(json_encode($access));
-		
 		if(!$access){
 			session_start();
-			session_destroy();	
+			$_SESSION['descricao']  = "Você não tem permissão para acessar esta àrea do sistema";
+			$_SESSION['tipo'] = "error";
 		}
+		
+		print_r(json_encode($access));
 		break;
+	// retorna dados dos componentes .dashboard-card
 	case "dashboardData":
 		$user = new User();
 		$data = $user->getDashboard();
+		print_r(json_encode($data));
+		break;
+	case "getUser":
+		$id = $_POST['id'];
+		$user = new User();
+		$data = $user->getUser($id);
+		print_r(json_encode($data));
+		break;
+	case "updateUser":
+		$user_data = $_POST;
+		$user = new User();
+		$data = $user->updateUser($user_data);
 		print_r(json_encode($data));
 		break;
 	default:

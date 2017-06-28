@@ -81,7 +81,7 @@ $(document).ready(function() {
                 sortable: false,
                 className: 'text-center',
                 "render": function ( data, type, full, meta ) {
-                    var url = 'editar.php?id='+full[0];
+                    var url = 'editar.php?tipo='+get[1]+'&id='+full[0];
                     return '<a href='+url+'><i class="fa fa-eye" aria-hidden="true"></i></a>';
                 }
             },
