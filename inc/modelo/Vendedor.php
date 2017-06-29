@@ -1,18 +1,7 @@
 <?php 
 	include("../persistencia/VendedorDAO.php");
 	class Vendedor{
-		
-		function Listar($key, $order, $search, $start, $length){
-			$vendedorDAO = new VendedorDAO();
-			$data = $vendedorDAO->Listar($key, $order, $search, $start, $length);
-			return $data;
-		}
-		
-		function getVendedor($id){
-			$vendedorDAO = new VendedorDAO();
-			$data = $vendedorDAO->getVendedor($id);
-			return $data;
-		}
+		private $mensagem = array();
 		
 		function getDataTableKey($id){
 			switch ($id){
@@ -27,6 +16,19 @@
 				default:
 					return "id";
 			}
+		}
+		
+		function Listar($dt_args){
+			$vendedorDAO = new VendedorDAO();
+			$data = $vendedorDAO->Listar($dt_args);
+			$this->mensagem = $vendedorDAO->getMensagem();
+			return $data;
+		}
+		
+		function getVendedor($id){
+			$vendedorDAO = new VendedorDAO();
+			$data = $vendedorDAO->getVendedor($id);
+			return $data;
 		}
 		
 	}

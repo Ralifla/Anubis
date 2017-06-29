@@ -17,14 +17,16 @@
 <script>
 $(document).ready(function(){
 	var id = document.URL;
-	id = id.split("=");
+	id = id.split("?");
+	id = id[1].split(/=|&/);
 	// cria inputs baseado nos keys/values da tabela de vendedores
 	$.ajax({
 		url: "inc/controle/VendedorAtendimento.php?acao=getVendedor",
 		type: 'POST',
 		dataType: 'json',
-		data: {'id':id[1]},
+		data: {'id':id[3]},
 		success: function(data){
+			/*
 			for(var i in data){
 				var name = data[i][0];
 				var label = name.replace("vendedor_", "");
@@ -36,6 +38,7 @@ $(document).ready(function(){
 			}
 			apllySelectInputs($("#editar-vendedor input"));
 			removeLoading();
+			*/
 		}
 	});
 });

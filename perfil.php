@@ -23,7 +23,7 @@ $(document).ready(function(){
 		url: "inc/controle/UserAtendimento.php?acao=getUser",
 		type: 'POST',
 		dataType: 'json',
-		data: {'id':id[1]},
+		data: {'id':id},
 		success: function(data){
 			var obj = $("#edit-perfil");
 			for(var i in data){

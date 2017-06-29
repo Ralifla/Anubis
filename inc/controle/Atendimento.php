@@ -30,21 +30,24 @@
 		case "listar":
 			$data;
 			$search = $_POST['search_aux'];
-			if($search == '')
-				$search = $_POST['search']['value'];
-			$start = $_POST['start'];
-			$length = $_POST['length'];
-			$i = $_POST['order'][0]['column'];
-			$order = $_POST['order'][0]['dir'];
 			$id = $_POST['columns'][$i]['data'];
+			if($search == '') $search = $_POST['search']['value'];
 				
+			// dados para realizar filtragem data_table
+			$dt_args = array(
+					"search" 	=> $search,
+					"start" 	=> $_POST['start'],
+					"length" 	=> $_POST['length'],
+					"order" 	=> $_POST['order'][0]['dir'],
+			);
+			
 			switch ($_POST['listagem']){
 				case '':
 				case 'vendedor':
 					require $url . "modelo/Vendedor.php";
 					$vendedor = new Vendedor();
-					$key = $vendedor->getDataTableKey($id);
-					$data = $vendedor->Listar($key, $order, $search, $start, $length);
+					$dt_args['key'] = $vendedor->getDataTableKey($id);
+					$data = $vendedor->Listar($dt_args);
 					break;
 				case 'webmaster':
 					require $url . "modelo/User.php";

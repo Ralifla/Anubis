@@ -41,11 +41,14 @@
 				window.location = "/anubis/dashboard.php";
 			}else{
 				// carrega mensagem pendente ao usuário
-				var userData = getSessionData(["descricao","tipo"]);
-				userData.done(function (data) {
-					if(data.value.descricao != null)
-						showToastr(data.value.tipo, data.value.descricao, true);
-				});
+				setTimeout(function(){ 
+					var userData = getSessionData(["descricao","tipo"]);
+					userData.done(function (data) {
+						if(data.value.descricao != null)
+								showToastr(data.value.tipo, data.value.descricao, true);
+					});
+				},1*1000);
+				
 			}
 		}
 	});

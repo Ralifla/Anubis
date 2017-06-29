@@ -4,7 +4,7 @@ include "Connection.php";
 class UserDAO{
 	private $mensagem = array();
 	
-	function get_mensagem(){
+	function getMensagem(){
 		return $this->mensagem;
 	}
 
@@ -124,8 +124,7 @@ class UserDAO{
 	function getUser($id){
 		$conection = new Connection();
 		$mysqli = $conection->getConnection();
-	
-		$query = "SELECT meta_key,meta_value from `an_usermeta`";
+		$query = "SELECT meta_key,meta_value from `an_usermeta` WHERE meta_id = ".$id;
 		$request = $mysqli->query($query);
 		$data = $this->serialize_request($request);
 		
@@ -137,16 +136,27 @@ class UserDAO{
 		$conection = new Connection();
 		$mysqli = $conection->getConnection();
 		
-		$query;
+		$query = "UPDATE `an_usermeta`";
+		$query .= "SET meta_value = CASE meta_key";
+		$show;
 		foreach($user_data as $key => $value){
-			if(strcmp($key,"id") != "0"){
-				$query .= $key . " -- " . $value . " --- " . $user_data["id"];
-				echo $query . "\n";
-				die();
-			}
+			if(strcmp($key,"id") != "0")
+				$query.= " WHEN '".$key."' THEN '".$value."'";
 		}
-		
-		return $data;
+		$query .= " END WHERE meta_id = ".$user_data['id'];
+
+		$error = false;
+		try{
+			$request = $mysqli->query($query);
+		}catch (Exception $e) {
+			$this->mensagem['descricao'] = "Ocorreu um erro ao realizar a atualização";
+			$this->mensagem['tipo'] = "alert";
+			$error = true;
+		}
+		if(!$error){
+			$this->mensagem['descricao'] = "Atualização realizada com sucesso!";
+			$this->mensagem['tipo'] = "success";
+		}
 	}
 	
 }

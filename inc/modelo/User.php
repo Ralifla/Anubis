@@ -54,7 +54,7 @@
 					$_SESSION['user_img_url'] = $this->get_user_image($data['user_permission']);
 				}
 				
-				$action = $userDAO->get_mensagem();
+				$action = $userDAO->getMensagem();
 				$tipo = $action['tipo'];
 				$location = $action['location'];
 				$descricao = $action['descricao'];
@@ -109,7 +109,8 @@
 		
 		function updateUser($user_data){
 			$userDAO = new UserDAO();
-			$data = $userDAO->updateUser($user_data);
+			$userDAO->updateUser($user_data);
+			$data = $userDAO->getMensagem();
 			return $data;
 		}
 		

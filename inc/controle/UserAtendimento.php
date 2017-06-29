@@ -46,12 +46,14 @@ switch ($acao){
 		$data = $user->getDashboard();
 		print_r(json_encode($data));
 		break;
+	// retorna meta_dados do usuário
 	case "getUser":
 		$id = $_POST['id'];
 		$user = new User();
 		$data = $user->getUser($id);
 		print_r(json_encode($data));
 		break;
+	// atualiza usuário
 	case "updateUser":
 		$user_data = $_POST;
 		$user = new User();

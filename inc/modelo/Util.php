@@ -26,8 +26,21 @@ class Menu{
 }
 
 Class DataControl{
-	function validate_injectior($string){
-		return $string;
+	function validate_int($val){
+		$val = intval($val, 0);
+		if(is_int($val))
+			return $val;
+		return null;
+	}
+}
+
+Class Mensagem{
+	function push($msg, $tipo){
+		if(strcmp($msg, "") != "0"){
+			session_start();
+			$_SESSION['tipo'] = $tipo;
+			$_SESSION['descricao'] = $msg;
+		}
 	}
 }
 
