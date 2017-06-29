@@ -35,11 +35,11 @@ Class DataControl{
 }
 
 Class Mensagem{
-	function push($msg, $tipo){
-		if(strcmp($msg, "") != "0"){
+	function push($descricao, $tipo){
+		if(strcmp($descricao, "") != "0"){
 			session_start();
 			$_SESSION['tipo'] = $tipo;
-			$_SESSION['descricao'] = $msg;
+			$_SESSION['descricao'] = $descricao;
 		}
 	}
 }

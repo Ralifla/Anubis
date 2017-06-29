@@ -3,6 +3,7 @@
 	class Vendedor{
 		private $mensagem = array();
 		
+		// key de ordenação para datatable
 		function getDataTableKey($id){
 			switch ($id){
 				case "0":
@@ -18,6 +19,11 @@
 			}
 		}
 		
+		function getMensagem(){
+			return $this->mensagem;
+		}
+		
+		// retorna lista para o datatable
 		function Listar($dt_args){
 			$vendedorDAO = new VendedorDAO();
 			$data = $vendedorDAO->Listar($dt_args);
@@ -25,6 +31,7 @@
 			return $data;
 		}
 		
+		// retorna vendedor baseado no id
 		function getVendedor($id){
 			$vendedorDAO = new VendedorDAO();
 			$data = $vendedorDAO->getVendedor($id);

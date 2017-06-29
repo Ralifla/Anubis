@@ -47,7 +47,7 @@
 						if(data.value.descricao != null)
 								showToastr(data.value.tipo, data.value.descricao, true);
 					});
-				},1*1000);
+				},1000);
 				
 			}
 		}

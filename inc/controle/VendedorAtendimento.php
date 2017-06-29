@@ -33,6 +33,7 @@
 		default:
 			$tipo = "error";
 			$descricao = "Ocorreu um erro ao efetuar o atendimento";
+			$mensagem = new Mensagem();
 			$mensagem->push($descricao, $tipo);
 	}
 	die();

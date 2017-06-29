@@ -76,6 +76,7 @@ class UserDAO{
 		return $this->serialize_request($request);
 	}
 	
+	/*
 	function Listar($key, $order, $search, $start, $length){
 		$conection = new Connection();
 		$mysqli = $conection->getConnection();
@@ -96,6 +97,55 @@ class UserDAO{
 				"recordsFiltered" => sizeof($data_list),
 				"data"	=> $data_list
 		);
+		return $data;
+	}
+	*/
+	// retorna listagem ordenada de acordo com os argumentos recebidos
+	function Listar($dt_args){
+		$conection = new Connection();
+		$mysqli = $conection->getConnection();
+		
+		$query = "SELECT COUNT(id) total FROM `an_users`";
+		$request = $mysqli->query($query);
+		$recordsTotal = $this->serialize_request($request);
+		$recordsTotal = $recordsTotal[0][0];
+		
+		
+		$data = array(
+				"data" => [],
+				"recordsTotal" => $recordsTotal,
+				"recordsFiltered" => sizeof($data_list)
+		);
+		$query = "SELECT id,user_login,user_name,user_permission FROM `an_users`
+				  WHERE user_name   LIKE ?
+				  OR 	user_login  LIKE ?
+				  ORDER BY ".$dt_args['key']." ". $dt_args['order']." LIMIT ".$dt_args['start']. " ," . $dt_args['length']. " ";
+		
+		if($stmt = $mysqli->prepare($query)){
+			$search = "%".$dt_args['search']."%";
+			$stmt->bind_param(
+					"ss",
+					$search,$search
+					);
+			$stmt->execute();
+			$stmt->bind_result($id, $user_login, $user_name, $user_permission);
+			$result = array();
+			while ($stmt->fetch()) {
+				$aux = array(
+						"0"	=>	$id,
+						"1"	=>	$user_login,
+						"2"	=>	$user_name,
+						"3"	=>	$user_permission
+				);
+				array_push($result, $aux);
+			}
+			$data["data"] = $result;
+			$this->mensagem = null;
+		}else{
+			echo "else";
+			$this->mensagem['descricao'] = "Foram encontrados entradas de má fé em seu código, por isso a requisição foi cancelada";
+			$this->mensagem['tipo'] = "error";
+		}
 		return $data;
 	}
 	

@@ -1,5 +1,6 @@
 <?php 
 	$url = $_SERVER['DOCUMENT_ROOT'] . '/anubis/inc/';
+	require $url . "modelo/Util.php";
 	
 	session_start();
 	$action = $_GET["acao"];
@@ -28,7 +29,8 @@
 			break;
 		// cria uma listagem para o datatables
 		case "listar":
-			$data;
+			$data;$msg_array;
+			
 			$search = $_POST['search_aux'];
 			$id = $_POST['columns'][$i]['data'];
 			if($search == '') $search = $_POST['search']['value'];
@@ -48,16 +50,31 @@
 					$vendedor = new Vendedor();
 					$dt_args['key'] = $vendedor->getDataTableKey($id);
 					$data = $vendedor->Listar($dt_args);
+					$msg_array = $vendedor->getMensagem();
 					break;
 				case 'webmaster':
 					require $url . "modelo/User.php";
 					$user = new User();
-					$key = $user->getDataTableKey($id);
-					$data = $user->Listar($key, $order, $search, $start, $length);
+					$dt_args['key'] = $user->getDataTableKey($id);
+					$data = $user->Listar($dt_args);
+					$msg_array = $user->getMensagem();
 					break;
 			}
 			print_r(json_encode($data));
+			
+			// envia mensagem
+			$tipo = $msg_array['tipo'];
+			$descricao = $msg_array['descricao'];
+			$mensagem = new Mensagem();
+			$mensagem->push($descricao,$tipo);
+			
 			break;
+		// exception para acao desconhecida
+		default:
+			$tipo = "error";
+			$descricao = "Ocorreu um erro ao efetuar o atendimento";
+			$mensagem = new Mensagem();
+			$mensagem->push($descricao, $tipo);
 	}
 	die();
 ?>

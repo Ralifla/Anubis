@@ -1,7 +1,9 @@
 <?php 
 	include "../persistencia/UserDAO.php";
 	class User{
+		private $mensagem = array();
 		
+		// imagem de acordo com permissao
 		function get_user_image($permission){
 			switch($permission){
 				case 100:
@@ -11,6 +13,7 @@
 			}
 		}
 
+		// key de ordenação para datatable
 		function getDataTableKey($id){
 			switch ($id){
 				case "0":
@@ -26,11 +29,9 @@
 			}
 		}
 		
-		function setUser($nome, $username, $password, $permission){
-			$this->nome = $nome;
-			$this->username = $username;
-			$this->passworld = $password;
-			$this->permission = $permission;
+		// retorna array mensagem
+		function getMensagem(){
+			return $this->mensagem;
 		}
 		
 		function Login($username, $password){
@@ -83,9 +84,10 @@
 		}
 		
 		
-		function Listar($key, $order, $search, $start, $length){
+		function Listar($dt_args){
 			$userDAO = new UserDAO();
-			$data = $userDAO->Listar($key, $order, $search, $start, $length);
+			$data = $userDAO->Listar($dt_args);
+			$this->mensagem = $userDAO->getMensagem();
 			return $data;
 		}
 		
