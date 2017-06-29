@@ -34,18 +34,17 @@
 			return $this->mensagem;
 		}
 		
+		// grava dados do usuário na sessão 
 		function Login($username, $password){
-			$descricao; $location; $tipo;
+			$location = "Location: /anubis";
 			
 			if(strcmp($username,'') == 0 || strcmp($password,'') == 0){
-				$tipo = "error";
-				$location = "Location: /anubis";
-				$descricao = "Informe o nome de usuário e a senha";
+				$location ;
+				$this->mensagem['tipo'] = "error";
+				$this->mensagem['descricao'] = "Informe o nome de usuário e a senha";
 			}else{
 				$userDAO = new UserDAO();
 				$data = $userDAO->Login($username, $password);
-				$data = $data[0];
-				
 				if($data){
 					session_destroy();
 					session_start();
@@ -53,25 +52,22 @@
 					$_SESSION['user_name'] = $data['user_name'];
 					$_SESSION['user_permission'] = $data['user_permission'];
 					$_SESSION['user_img_url'] = $this->get_user_image($data['user_permission']);
+					$location = 'Location: /anubis/dashboard.php';
 				}
-				
-				$action = $userDAO->getMensagem();
-				$tipo = $action['tipo'];
-				$location = $action['location'];
-				$descricao = $action['descricao'];
+				$this->mensagem = $userDAO->getMensagem();
 			}
-			session_start();
-			$_SESSION['tipo'] = $tipo;
-			$_SESSION['descricao'] = $descricao;
+			
 			return $location;
 		}
 		
+		// saida do sistema
 		function Logout(){
 			session_start();
 			session_destroy();
 			die();
 		}
 		
+		// controi menu de acordo com permissao
 		function Build_Menu($perm){
 			$userDAO = new UserDAO();
 			$data = $userDAO->Build_Menu($perm);
@@ -83,7 +79,7 @@
 			return $menu;
 		}
 		
-		
+		// cria listagem de usuários
 		function Listar($dt_args){
 			$userDAO = new UserDAO();
 			$data = $userDAO->Listar($dt_args);
@@ -91,24 +87,28 @@
 			return $data;
 		}
 		
+		// verfica se usuário tem acesso à determinada página
 		function RequestAccess($page, $perm){
 			$userDAO = new UserDAO();
 			$access = $userDAO->RequestAccess($page, $perm);
 			return $access;
 		}
 		
+		//  dados dos componentes .dashboard-card
 		function getDashboard(){
 			$userDAO = new UserDAO();
 			$data = $userDAO->getDashboard();
 			return $data;
 		}
 		
+		// retorna usuário baseado no ID
 		function getUser($id){
 			$userDAO = new UserDAO();
 			$data = $userDAO->getUser($id);
 			return $data;
 		}
 		
+		// atualisa usuário
 		function updateUser($user_data){
 			$userDAO = new UserDAO();
 			$userDAO->updateUser($user_data);

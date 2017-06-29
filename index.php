@@ -38,4 +38,11 @@
 		</article>
 	</section>
 </body>
+<script>
+var userData = getSessionData(["descricao","tipo"]);
+userData.done(function (data) {
+	if(data.value.descricao != null)
+			showToastr(data.value.tipo, data.value.descricao, true);
+});
+</script>
 </html>

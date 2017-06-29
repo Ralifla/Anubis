@@ -4,10 +4,12 @@ include "Connection.php";
 class UserDAO{
 	private $mensagem = array();
 	
+	// array com dados da operação realizada
 	function getMensagem(){
 		return $this->mensagem;
 	}
 
+	// recebe $mysqly->query  e retorna uma lista
 	function serialize_request($request){
 		$data = array();
 		while ($row = mysqli_fetch_assoc($request))
@@ -15,40 +17,29 @@ class UserDAO{
 		return $data;
 	}
 	
-	function serialize_list($request){
-		$data = array();
-		while ($row = mysqli_fetch_assoc($request)){
-			$aux = array();
-			foreach($row as $key => $value){
-				array_push($aux, $value);
-			}
-			array_push($data, $aux);
-		}
-		return $data;
-	}
-	
 	function Login($username, $password){
 		$conection = new Connection();
 		$mysqli = $conection->getConnection();
 		
-		$query = "SELECT * FROM an_users WHERE user_login ='". $username."'AND user_pass ='".$password."'";
-		$request = $mysqli->query($query);
-		if(!request){
-			$this->mensagem['tipo'] = "error";
-			$this->mensagem['location'] = "Location: /anubis";
-			$this->mensagem['descricao'] = "Ocorreu um erro ao estabelecer uma conexão com banco de dados";
-		}else{
-			if(mysqli_num_rows($request) == 0){
-				$this->mensagem['tipo'] = "warning";
-				$this->mensagem['location'] = "Location: /anubis";
-				$this->mensagem['descricao'] = "Usuário não cadastrado";
+		$query = "SELECT * FROM an_users WHERE user_login ='".$username."' AND user_pass ='".$password."'";
+		if($stmt = $mysqli->prepare($query)){
+			$request = $mysqli->query($query);
+			if(!request){
+				$this->mensagem['tipo'] = "error";
+				$this->mensagem['descricao'] = "Ocorreu um erro ao estabelecer uma conexão com banco de dados";
 			}else{
-				$this->mensagem['tipo'] = "success";
-				$this->mensagem['location'] = "Location: /anubis/dashboard.php";
-				$this->mensagem['descricao'] = "Bem vindo ao sistema administrativo Ralifla";
+				if(mysqli_num_rows($request) == 0){
+					$this->mensagem['tipo'] = "warning";
+					$this->mensagem['descricao'] = "Usuário não cadastrado";
+				}else{
+					$this->mensagem['tipo'] = "success";
+					$this->mensagem['descricao'] = "LALALALALALAALA";
+					$this->mensagem['descricao'] = "Bem vindo ao sistema administrativo Ralifla";
+				}
 			}
 		}
-		return $this->serialize_request($request);
+		$data = $this->serialize_request($request);
+		return $data[0];
 	}
 	
 	function RequestAccess($page, $perm){

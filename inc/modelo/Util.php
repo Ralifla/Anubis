@@ -1,5 +1,6 @@
 <?php 
 
+// manipulação do menu
 class Menu{
 	function Sort($menu){
 		$pai = array();
@@ -25,6 +26,7 @@ class Menu{
 	}
 }
 
+// classe para validação dos dados
 Class DataControl{
 	function validate_int($val){
 		$val = intval($val, 0);
@@ -34,6 +36,7 @@ Class DataControl{
 	}
 }
 
+// classe para controle de mensagens na sessão
 Class Mensagem{
 	function push($descricao, $tipo){
 		if(strcmp($descricao, "") != "0"){

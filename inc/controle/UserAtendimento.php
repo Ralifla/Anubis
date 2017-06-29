@@ -1,15 +1,24 @@
 <?php 
-include("../modelo/User.php");
+	$url = $_SERVER['DOCUMENT_ROOT'] . '/anubis/inc/';
+	include($url. "modelo/User.php");
+
 $acao = $_GET["acao"];
 switch ($acao){
 	// login
 	case "login": 
+		require "../modelo/Util.php";
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		
 		$user = new User();
 		$location = $user->Login($username, $password);
 		
+		$mensagem = $user->getMensagem();
+		$tipo = $mensagem['tipo'];
+		$descricao = $mensagem['descricao'];
+		
+		$mensagem = new Mensagem();
+		$mensagem->push($descricao, $tipo);
 		header($location);
 		break;
 	// logout
@@ -61,8 +70,12 @@ switch ($acao){
 		print_r(json_encode($data));
 		break;
 	default:
-		$_SESSION['descricao']  = "Ocorreu um erro ao efetuar o atendimento";
-		$_SESSION['tipo'] = "error";
+		$descricao  = "Ocorreu um erro ao efetuar o atendimento";
+		$tipo = "error";
+		
+		require "../modelo/Util.php";
+		$mensagem = new Mensagem();
+		$mensagem->push($descricao, $tipo);
 		break;	
 	die();
 }

@@ -60,7 +60,6 @@ class VendedorDAO{
 			$data["data"] = $result;
 			$this->mensagem = null;
 		}else{
-			echo "else";
 			$this->mensagem['descricao'] = "Foram encontrados entradas de má fé em seu código, por isso a requisição foi cancelada";
 			$this->mensagem['tipo'] = "error";
 		}
