@@ -38,5 +38,36 @@
 			return $data;
 		}
 		
+		// salva arquivos
+		function SaveFiles($cpf,$file){
+			$dir = "../files/";
+			
+			// verifica se ocorreu um erro ao enviar imagens
+			$error = $file['error'];
+			foreach ($error as $key => $value){
+				if($val != 0){
+					$this->mensagem['tipo'] = "error";
+					$this->mensagem['descricao'] = "Ocorreu um erro ao enviar os arquivos";
+				}
+			}
+			
+			// verifica tipo de arquivo enviado
+			$tipo = $file['type'];
+			foreach ($tipo as $key => $value){
+				if(strpos($value, "image") !== false){
+					// redimencionar 
+				}else{
+					// salvar
+				}
+			}
+			die();
+		}
+		/*
+			name
+			type
+			tmp_name
+			error
+			size
+		 */
 	}
 ?>

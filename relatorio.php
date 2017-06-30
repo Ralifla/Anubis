@@ -1,5 +1,5 @@
 <?php include "header.php"; ?>
-<div class="col-md-9 col-lg-10">
+<div class="col-md-9 col-lg-10 col-xs-12">
 	<div class="portlet">
 		<div class="portlet-title">
 			<i class="fa fa-file-excel-o" aria-hidden="true"></i>

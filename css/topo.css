@@ -75,6 +75,24 @@
 .content-search {
     position: relative;
 }
+#logout:before {
+    content: "Sair";
+    position: absolute;
+    font-size: 12px;
+    margin-top: -30px;
+    margin-left: -4px;
+    background-color: #44b6ae;
+    transition: all .3s;
+    padding: 7px 5px;
+}
+
+#logout:hover:before {
+    margin-top: 0px;
+}
+
+#logout {
+    overflow: hidden;
+}
 /* menu */
 #menu {
     padding-right: 0;
@@ -178,5 +196,8 @@ li.open .sub-menu{
 		font-family: FontAwesome;
 		color: #e9ecf3;
 		font-size: 25px;
+	}
+	.search-content{
+		width: 100%;
 	}
 }

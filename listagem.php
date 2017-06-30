@@ -1,7 +1,7 @@
 <?php include "header.php"; ?>
 <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" >
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<div class="col-md-9 col-lg-10">
+<div class="col-md-9 col-lg-10 col-xs-12">
 	<div class="portlet">
 		<div class="portlet-title">
 			<i class="fa fa-users" aria-hidden="true"></i>

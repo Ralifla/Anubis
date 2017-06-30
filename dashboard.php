@@ -1,5 +1,5 @@
 <?php include "header.php"; ?>
-<div class="col-md-9 col-lg-10">
+<div class="col-md-9 col-lg-10 col-xs-12">
 	<div class="portlet">
 		<div class="portlet-title">
 			<i class="fa fa-bar-chart" aria-hidden="true"></i>
@@ -9,44 +9,44 @@
 			<div class="row">
 				<div id="dashboard-kits" class="col-md-3 col-sm-6 col-xs-12">
 					<div class="dashboard-card font-blue-madison">
-						<div class="number col-xs-9">
+						<div class="number col-md-9 col-xs-8">
 							<h3>10</h3>
 							<small>Kits montados</small>
 						</div>
-						<div class="icon text-right col-xs-3">
+						<div class="icon text-right col-md-3 col-xs-4">
 							<i class="fa fa-3x fa-shopping-basket" aria-hidden="true"></i>
 						</div>
 					</div>
 				</div>
 				<div id="dashboard-vendedores" class="col-md-3 col-sm-6 col-xs-12">
 					<div class="dashboard-card font-green-meadow">
-						<div class="number col-xs-9">
+						<div class="number col-md-9 col-xs-8">
 							<h3>10</h3>
 							<small>Vendedores Cadastrados</small>
 						</div>
-						<div class="icon text-right col-xs-3">
+						<div class="icon text-right col-md-3 col-xs-4">
 							<i class="fa fa-3x fa-user-plus" aria-hidden="true"></i>
 						</div>
 					</div>
 				</div>
 				<div id="dashboard-aguardando" class="col-md-3 col-sm-6 col-xs-12">
 					<div class="dashboard-card font-red-soft">
-						<div class="number col-xs-9">
+						<div class="number col-md-9 col-xs-8">
 							<h3>10</h3>
 							<small>Aguardando Aprovação</small>
 						</div>
-						<div class="icon text-right col-xs-3">
+						<div class="icon text-right col-md-3 col-xs-4">
 							<i class="fa fa-3x fa-handshake-o" aria-hidden="true"></i>
 						</div>
 					</div>
 				</div>
 				<div id="dashboard-users" class="col-md-3 col-sm-6 col-xs-12">
 					<div class="dashboard-card font-purple">
-						<div class="number col-xs-9">
+						<div class="number col-md-9 col-xs-8">
 							<h3>10</h3>
 							<small>Administradores Operando</small>
 						</div>
-						<div class="icon text-right col-xs-3">
+						<div class="icon text-right col-md-3 col-xs-4">
 							<i class="fa fa-3x fa-flag" aria-hidden="true"></i>
 						</div>
 					</div>

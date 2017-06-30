@@ -1,5 +1,7 @@
 <?php include "header.php"; ?>
-<div class="col-md-9 col-lg-10">
+<link rel="stylesheet" type="text/css" href="css/editar.css"></link>
+<script type="text/javascript" src="js/editar.js"></script>
+<div class="col-md-9 col-lg-10 col-xs-12">
 	<div class="portlet">
 		<div class="portlet-title">
 			<i class="fa fa-user" aria-hidden="true"></i>
@@ -7,6 +9,34 @@
 		</div>
 		<div class="portlet-body">
 			<form id="editar-vendedor">
+			
+				<div class="container col-xs-12">
+			    	<h3 data-toggle="collapse" data-target="#documentos" class="collapse-title">Documentos</h3>
+				  	<div id="documentos" class="collapse in">
+				  		<div id="drop-area" class="box clearfix">
+					    	<i id="open-modal" class="fa fa-4x fa-folder-open-o" aria-hidden="true"></i>
+				  		</div>
+				  		<!-- Modal Documentos -->
+						<div id="modal-documentos" class="modal fade" role="dialog">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Documentos Enviados</h4>
+									</div>
+									<div class="modal-body">
+										<p class="text-center">Nenhum arquivo foi enviado...</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Fechar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fim Modal -->
+					</div>
+				</div>
 			</form>
 			<div class="text-center">
 				<button id="salvar" class="btn btn-primary">Salvar</button>
@@ -14,45 +44,4 @@
 		</div>
 	</div>
 </div>
-<script>
-$(document).ready(function(){
-	var id = document.URL;
-	id = id.split("?");
-	id = id[1].split(/=|&/);
-	// cria inputs baseado nos keys/values da tabela de vendedores
-	$.ajax({
-		url: "inc/controle/VendedorAtendimento.php?acao=getVendedor",
-		type: 'POST',
-		dataType: 'json',
-		data: {'id':id[3]},
-		success: function(data){
-			/*
-			for(var i in data){
-				var name = data[i][0];
-				var label = name.replace("vendedor_", "");
-				label = label.replace("_", " ");
-				label = label.length > 3 ? capitalizeFirstLetter(label) : label.toUpperCase();	
-				
-				var html = get_edit_structure(label, name, data[i][1]);
-				$("#editar-vendedor").append(html);
-			}
-			apllySelectInputs($("#editar-vendedor input"));
-			removeLoading();
-			*/
-		}
-	});
-});
-
-// retorna estrutura do input
-function get_edit_structure(label, key, value){
-	var last_style = $("#editar-vendedor div:last-child").attr("class");
-	var container_class = get_auto_grid(last_style, value.length, key);
-	
-	var html = '<div class="'+container_class+'">';
-			html += '<label for="'+key+'">'+label+'</label>';
-			html += '<input type="text" id="'+key+'" value="'+value+' ">';
-		html += '</div>';
-	return html;
-}
-</script>
 <?php include "footer.php"; ?>

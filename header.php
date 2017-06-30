@@ -53,6 +53,7 @@
 		}
 	});
 	</script>
+	<script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/lib/toastr.min.js"></script>
 	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" src="js/geral.js"></script>
@@ -60,7 +61,7 @@
 <body class="status-loading">
 <div id="loading-gif"><div class="uil-ring-css" style="transform:scale(0.84);"><div></div></div></div>
 <header id="container-topo" class="col-xs-12 bg-dark">
-	<section class="col-md-3 col-xs-6">
+	<section class="col-md-3 col-md-offset-0 col-xs-6 col-xs-offset-3">
 		<div class="content-logo">
 			<a href="dashboard.php"><img src="img/ralifla.png"></a>
 		</div>

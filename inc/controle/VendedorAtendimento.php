@@ -29,6 +29,16 @@
 			$mensagem->push($descricao, $tipo);
 			
 			break;
+		case "saveFiles":
+			$cpf = $_POST['cpf'];
+			$files = $_FILES['file'];
+			
+			$vendedor = new Vendedor();
+			$vendedor->SaveFiles($cpf,$files);
+			$mensagem = $vendedor->getMensagem();
+			
+			print_r(json_encode($mensagem));
+			break;
 		// exception para acao desconhecida
 		default:
 			$tipo = "error";

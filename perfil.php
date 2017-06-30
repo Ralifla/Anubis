@@ -1,6 +1,5 @@
 <?php include "header.php"; ?>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<div class="col-md-9 col-lg-10">
+<div class="col-md-9 col-lg-10 col-xs-12">
 	<div class="portlet">
 		<div class="portlet-title">
 			<i class="fa fa-address-card-o" aria-hidden="true"></i>

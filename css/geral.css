@@ -92,6 +92,7 @@ textarea{
 .dashboard-card {
     overflow: auto;
     padding: 20px 9px;
+    margin-bottom: 15px;
     border: 1px solid;
 }
 .dashboard-card .number h3 {
@@ -100,4 +101,10 @@ textarea{
 
 .dashboard-card .number small {
     text-transform: uppercase;
+}
+.collapse-title {
+    cursor: pointer;
+}
+.modal-footer{
+	text-align: center;
 }

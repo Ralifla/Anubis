@@ -30,10 +30,9 @@ class UserDAO{
 			}else{
 				if(mysqli_num_rows($request) == 0){
 					$this->mensagem['tipo'] = "warning";
-					$this->mensagem['descricao'] = "Usuário não cadastrado";
+					$this->mensagem['descricao'] = "Usuário não cadastrado ou senha não confere";
 				}else{
 					$this->mensagem['tipo'] = "success";
-					$this->mensagem['descricao'] = "LALALALALALAALA";
 					$this->mensagem['descricao'] = "Bem vindo ao sistema administrativo Ralifla";
 				}
 			}
