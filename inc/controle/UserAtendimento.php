@@ -69,6 +69,23 @@ switch ($acao){
 		$data = $user->updateUser($user_data);
 		print_r(json_encode($data));
 		break;
+	// atualiza senha do usuário
+	case "updatePassword":
+		$id = $_POST['id'];
+		$new = $_POST['new'];
+		$old = $_POST['old'];
+		
+		$user = new User();
+		$user->UpdatePassword($id, $old, $new);
+		
+		$mensagem = $user->getMensagem();
+		$data = array(
+				"tipo" => $mensagem['tipo'],
+				"descricao" => $mensagem['descricao']
+		);
+		print_r(json_encode($data));
+		
+		break;
 	default:
 		$descricao  = "Ocorreu um erro ao efetuar o atendimento";
 		$tipo = "error";

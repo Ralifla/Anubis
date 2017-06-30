@@ -116,5 +116,11 @@
 			return $data;
 		}
 		
+		// atualiza senha do usuário
+		function UpdatePassword($id, $old, $new){
+			$userDAO = new UserDAO();
+			$userDAO->UpdatePassword($id, $old, $new);
+			$this->mensagem = $userDAO->getMensagem();
+		}
 	}
 ?>

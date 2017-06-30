@@ -200,5 +200,22 @@ class UserDAO{
 		}
 	}
 	
+	// atualiza senha do usuário
+	function UpdatePassword($id, $old, $new){
+		$conection = new Connection();
+		$mysqli = $conection->getConnection();
+		
+		$query = "UPDATE `an_users` SET user_pass = '".$new."' WHERE user_pass = '".$old."' AND id = ".$id."";
+		$request = $mysqli->query($query);
+		
+		if($mysqli->affected_rows == 1){
+			$this->mensagem['descricao'] = "Atualização realizada com sucesso!";
+			$this->mensagem['tipo'] = "success";
+		}else{
+			$this->mensagem['descricao'] = "Erro ao confirmar senha antiga!";
+			$this->mensagem['tipo'] = "error";
+		}
+	}
+	
 }
 ?>
